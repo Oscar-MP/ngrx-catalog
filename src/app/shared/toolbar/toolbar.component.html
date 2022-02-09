@@ -1,0 +1,22 @@
+<div class="toolbar">
+    <span>
+        <button
+            mat-mini-fab
+            color="primary"
+            (click)="navigateBack($event)"
+        >
+            <mat-icon>
+                arrow_back
+            </mat-icon>
+        </button>
+    </span>
+    <span class="reference">
+        {{ title | uppercase }} 
+        <a 
+            *ngIf="link && link !== null"
+            [routerLink]="link.link"
+        >
+            {{ link.text | uppercase }}
+        </a>
+    </span>
+</div>

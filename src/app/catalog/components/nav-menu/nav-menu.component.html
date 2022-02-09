@@ -1,0 +1,105 @@
+<div class="nav-menu">
+    <span class="menu-item">
+        <button 
+            mat-mini-fab
+            color="primary" 
+            class="bg-color-dark"
+            aria-label="Shopping cart"
+            [matMenuTriggerFor]="shoppingCartMenu"
+        >
+            <mat-icon
+                [matBadge]="amountOfItemsInCart$ | async"
+                matBadgePosition="after"
+                matBadgeColor="warn"
+                matBadgeOverlap="false"
+            >
+                shopping_cart
+            </mat-icon>
+        </button>
+
+        <mat-menu 
+            #shoppingCartMenu="matMenu"
+            class="menu-cart"
+        >
+
+            <div 
+                class="empty-cart"
+                *ngIf="((amountOfItemsInCart$ | async) || 0) < 1"
+            >
+                NO HAY PRODUCTOS
+            </div>
+
+            <div
+                *ngFor="let cartProduct of cartProducts$ | async"
+                class="shopping-cart-product"
+            >
+                <div class="product-resume flex-column">
+
+                    <span class="flex-1">
+                        <h4> {{ cartProduct.product.brand }}: {{ cartProduct.product.name | uppercase }}</h4>
+                    </span>
+
+                    <div class="flex-row">
+                        <span class="flex-1">
+                            <b> Price: </b> {{ cartProduct.product.price }}
+                        </span>
+                        <span>
+                            <b> Amount: </b> {{ cartProduct.amount }}
+                        </span>
+                    </div>
+                </div>
+                <div 
+                    class="delete-product"
+                    (click)="removeItemFromCart($event, cartProduct.product.id)"
+                >
+                    <mat-icon>delete</mat-icon>
+                </div>
+            </div>
+            <div class="menu-action">
+                <button 
+                    mat-raised-button 
+                    color="primary"
+                    routerLink="/cart"
+                >
+                    <mat-icon style="margin-right: .25em;">shopping_cart</mat-icon>
+                    CART
+                </button>
+
+                <button 
+                    *ngIf="((amountOfItemsInCart$ | async) || 0) > 0"
+                    mat-raised-button 
+                    color="warn"
+                    (click)="emptyCart($event)"
+                >
+                    <mat-icon style="margin-right: .25em;">
+                        remove_shopping_cart
+                    </mat-icon>
+                    EMPTY CART
+                </button>
+            </div>
+        </mat-menu>
+    </span>
+    <span class="menu-item">
+        <button 
+            *ngIf="!(isLogged$ |async)"
+            mat-mini-fab
+            color="primary"
+            class="bg-color-dark unlogged"
+            (click)="onUserMenuButtonClick($event, false)"
+        >
+            <mat-icon matBadge="1" matBadgeIcon="lock">
+                person
+            </mat-icon>
+        </button>
+
+        <button 
+            *ngIf="isLogged$ |async"
+            mat-mini-fab
+            color="primary"
+            class="bg-color-dark"
+            (click)="onUserMenuButtonClick($event, true)"
+        >
+            <mat-icon>person</mat-icon>
+        </button>
+    </span>
+</div>

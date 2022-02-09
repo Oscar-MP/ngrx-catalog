@@ -1,0 +1,42 @@
+div.footer {
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid #CECECE;
+    background: #EFEFEF;
+    box-sizing: border-box;
+}
+
+div.footer div.footer-content {
+    
+    margin: 1em;
+    flex-grow: 1;
+    display: flex;
+    gap: 2em;
+
+}
+
+div.footer div.copyright {
+    background: rgba(0,0,0,.05);
+    padding: 0.35em 0;
+}
+
+
+
+/** FOOTER BOXES **/ 
+div.footer div.footer-content div.footer-box {
+    flex: 1;
+    padding: 1em;
+    border: 1px solid rgba(0,0,0,.05);
+    box-shadow: 0 1px 1px 2px rgba(167, 167, 167, 0.1)
+}
+
+div.footer div.footer-content div.footer-box > h3 {
+    text-align: center;
+    color: var(--bg-dark);
+    text-decoration: underline;
+    font-size: 22px;
+}
+div.footer div.footer-content div.footer-box > p {
+    text-align: justify;
+    margin: 1em;
+}

@@ -1,0 +1,9 @@
+.form-field-row {
+    display: inline-block;
+    width: 100%;
+    padding: .25em 0;
+}
+
+.form-field-row.full-width > * {
+    width: 100%;
+}

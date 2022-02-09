@@ -1,0 +1,60 @@
+
+    <form 
+    #loginForm="ngForm" 
+    (ngSubmit)="submitLogin(loginForm.form.value)"
+    *ngIf="!(isLoading$ |async)"
+>
+    <div class="form-field-row  full-width text-center">
+        <mat-form-field appearance="outline">
+            <mat-label>Username/email</mat-label>
+            <input matInput placeholder="Email" ngModel email name="username" required>
+        </mat-form-field>
+    </div>
+    <div class="form-field-row full-width text-center">
+        <mat-form-field appearance="outline">
+            <mat-label>Password</mat-label>
+            <input matInput placeholder="Password" ngModel name="password" type="password" required>
+        </mat-form-field>
+    </div>
+
+    <div class="form-field-row">
+        <mat-checkbox 
+            color="primary"
+            ngModel
+            name="keepMeLoggedIn"
+            [checked]="false"
+        >
+            Keep me logged!
+        </mat-checkbox>
+    </div>
+    <div class="form-field-row">
+        <mat-checkbox 
+            color="primary"
+            ngModel
+            name="rememberUsername"
+            [checked]="false"
+        >
+            Remember the username
+        </mat-checkbox>
+    </div>
+
+    <div class="form-field-row text-center">
+        <button 
+            mat-raised-button
+            type="submit"
+            color="primary"
+            class="full-width"
+            [disabled]="!loginForm.form.valid"
+        >
+            LOGIN
+        </button>
+    </div>
+</form>
+
+
+<div 
+    class="loading "
+    *ngIf="isLoading$ | async"
+>
+    <mat-spinner></mat-spinner>
+</div>

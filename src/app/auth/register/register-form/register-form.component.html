@@ -1,0 +1,41 @@
+<form 
+    class="full-width"
+    #loginForm="ngForm" 
+    (ngSubmit)="submitRegistration(loginForm.form.value)"
+>
+    <div class="field-container">
+        <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Username/email</mat-label>
+            <input matInput placeholder="Email" ngModel email name="username" required>
+        </mat-form-field>
+    </div>
+
+    <div class="field-container">
+        <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Password</mat-label>
+            <input matInput type="password" placeholder="Password" ngModel password name="password" required>
+        </mat-form-field>
+    </div>
+
+    <div class="field-container">
+        <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Repeat Password</mat-label>
+            <input matInput type="password" placeholder="Password" ngModel repeatedPassword name="repeatedPassword" required>
+        </mat-form-field>
+    </div>
+    <div class="field-container">
+        <!--<re-captcha 
+            (resolved)="afterCaptchaSolved($event)"
+            siteKey="6LfKNi0cAAAAACeYwFRY9_d_qjGhpiwYUo5gNW5-"
+        ></re-captcha>-->
+
+        <mat-checkbox class="" [(ngModel)]="captchaResolved" name="captcha" color="primary">I'm not a robot</mat-checkbox>
+
+    </div>    
+
+    <div class="field-container text-center">
+        <button mat-raised-button color="primary" [disabled]="!captchaResolved">
+            Create an account
+        </button>
+    </div>
+</form>

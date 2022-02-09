@@ -1,0 +1,14 @@
+div.page-wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+div.page-wrapper > * {
+    width: 100%;
+}
+
+div.main-content {
+    display: block;
+    flex: 1;
+}

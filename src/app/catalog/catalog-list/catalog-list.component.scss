@@ -1,0 +1,64 @@
+div.catalog-grid {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 4em;
+}
+
+div.catalog-grid div.catalog-item {
+    flex: 1;
+    position: relative;
+    flex-basis: 30%;
+}
+
+div.catalog-grid div.catalog-item img {
+    max-width: 100%;
+    display: block;
+}
+
+div.catalog-grid div.catalog-item div.catalog-caption {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    background:rgba(0,0,0,.5);
+    color: #efefef;
+    padding: 1em;
+    height: auto;
+}
+
+div.catalog-grid div.catalog-item div.catalog-caption p {
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    display: block;
+    text-overflow: ellipsis;
+}
+
+
+div.catalog-grid div.catalog-item div.catalog-caption span.caption-header {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+div.catalog-grid div.catalog-item div.catalog-caption h2 {
+    color: var(--bg-light);
+    text-decoration: underline var(--bg-primary);
+    flex: 1;
+}
+
+.selected {
+    -webkit-box-shadow: 0px 0px 10px 3px rgba(7,104,128,1);
+    -moz-box-shadow: 0px 0px 10px 3px rgba(7,104,128,1);
+    box-shadow: 0px 0px 10px 3px rgba(7,104,128,1);
+}
+
+div.catalog-grid div.catalog-item button.navigate-catalog-btn {
+    position: absolute;
+    top:1em; right: 1em;
+    /**background: var(--bg-dark);
+    border: 2px solid var(--bg-light);
+    color: var(--bg-light);
+    border-radius: .5em;
+    padding: .75em 1.2em;*/
+    
+}

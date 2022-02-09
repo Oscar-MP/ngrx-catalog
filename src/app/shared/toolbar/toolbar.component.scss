@@ -1,0 +1,31 @@
+.toolbar {
+    width: 100%;
+    background: var(--bg-primary);
+    padding: .5em 0;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: baseline;
+}
+
+.toolbar > * {
+    display: block;
+    align-self: center;
+    display: flex;
+    align-items: baseline;
+    padding: 0 1em;
+}
+
+.toolbar .reference {
+    font-size: 18px;
+    font-weight: bold;
+    margin-left: 2.5em;
+    color: #212121;
+}
+
+.toolbar .reference a {
+    color: #f1f1f1;
+    letter-spacing: 2px;
+    margin-left: .75em;
+    text-transform: uppercase;
+}

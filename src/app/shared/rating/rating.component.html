@@ -1,0 +1,19 @@
+<div 
+    class="rating-container"
+    [ngClass]="{'rateable': allowRating}"
+    (mouseout)="onMouseOutOfRange()"
+>
+    <mat-icon 
+        *ngFor="let i of createArray(5); let indx = index"
+        class="rating-star"
+        [ngClass]="{
+            'active': isActive(indx), 
+            'star-hover': allowRating && !isActive(indx) &&currentHoverStar !== null && indx <= currentHoverStar}"
+        aria-hidden="false" 
+        aria-label="Rating icon"
+        (click)="onStarClicked($event, indx)"
+        (mouseover)="onStarHover($event, indx)"
+    >
+        star
+    </mat-icon>
+</div>

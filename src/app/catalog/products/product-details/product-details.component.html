@@ -1,0 +1,57 @@
+<div class="wrapper full-width full-height">
+    
+    <div class="product-container full-height">
+        <ng-container *ngIf="currentProduct$ | async as product">
+            <div class="product-header">
+                <h2>
+                    {{ product.name | uppercase }}
+                </h2>
+            </div>
+            <div class="product-content-container">
+                <div class="product-content-text">
+                    <div class="product-subtitle">
+                        <span class="flex-1">
+                            <p class="product-brand">
+                                Brand: {{ product.brand | uppercase}}
+                            </p>
+                        </span>
+                        <span>
+                            <rating [rating]="product.rating || 0"></rating>
+                        </span>
+                    </div>
+                    <div class="product-text-description flex-1">
+                        <p class="product-description">
+                            {{ product.description }}
+                        </p>
+                    </div>
+                    <div class="product-text-footer">
+                        <p class="product-price">Precio: {{ product.price }} $</p>
+                        <span class="flex-row">
+                            <span>
+                                <button 
+                                    mat-raised-button 
+                                    (click)="onBuyButtonClicked($event, product)"
+                                    color="primary" 
+                                    style="margin-top: .75em;"
+                                >
+                                    <mat-icon>shopping_cart</mat-icon>
+                                    ADD TO CART
+                                </button>
+                            </span>
+                            <span>
+                                <mat-form-field class="margin-left-md" appearance="outline">
+                                    <mat-label>Quantity:</mat-label>
+                                    <input matInput type="number" placeholder="Amount of items" [(ngModel)]="amountOfProducts">
+                                </mat-form-field>
+                            </span>
+
+                        </span>
+                    </div>
+                </div>
+                <div class="product-content-image">
+                    <img [src]="product.image" alt="">
+                </div>
+            </div>
+        </ng-container>
+    </div>
+</div>

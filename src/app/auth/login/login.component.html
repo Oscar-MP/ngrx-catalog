@@ -1,0 +1,27 @@
+<div class="page-wrapper">
+    <div class="margin-center-sm flex-column full-height panel-container">
+
+        
+        <div *ngIf="error$ | async as error" class="error-panel">
+            {{ error }}
+        </div>
+
+        <div class="panel flex-column full-width vertical-absolute-center ">
+            <div class="panel-inner-container flex-1 flex-column">
+                <div class="panel-header">
+                    <img src="assets/images/demo-logo.png" alt="">
+                </div>
+                <div class="panel-content flex-1">
+                    <app-login-form></app-login-form>
+                </div>
+    
+                <div class="panel-footer">
+                    <span class="login-links flex-row">
+                        <a [routerLink]="['/auth/register']">Sign up!</a>
+                        <a [routerLink]="['/auth/reset-password']">Reset your password</a>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

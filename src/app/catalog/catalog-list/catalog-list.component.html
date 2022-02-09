@@ -1,0 +1,54 @@
+
+<div class="content-parent full-height">
+    <aside>
+        <catalog-info></catalog-info>
+        <button 
+            mat-raised-button 
+            style="margin-top: 1em"
+            (click)="toggleAverageRatingInfo()"
+        > 
+            Toggle rating 
+        </button>
+    </aside>
+
+    <div class="content-container">
+        <h2>Catalog list</h2>
+        <div 
+            *ngIf="errorMessage$ | async as error"
+            class="notificator error">
+            <p> {{ error }}</p>
+        </div>
+        <ng-container *ngIf="catalogs$ | async as catalogs">
+            <div class="catalog-grid">
+                <div 
+                    matRipple
+                    *ngFor="let catalog of catalogs"
+                    class="catalog-item" 
+                    (click)="onCatalogItemClick($event, catalog)"
+                    [ngClass]="{'selected': (selectedCatalogId$ | async) === catalog.id }"
+                >
+                    <button 
+                        mat-raised-button 
+                        color="warn"
+                        class="navigate-catalog-btn"
+                        (click)="navigateToCatalogProducts(catalog.id)"
+                    >
+                        Join Catalog
+                    </button>
+                    <img [src]="catalog.image" />
+                    <div class="catalog-caption">
+                        <span class="caption-header">
+                            <h2>{{ catalog.name }} </h2>
+                            <rating 
+                                *ngIf="showAverageRating$ | async"
+                                [rating]="catalog.rating"
+                            ></rating>
+                        </span>
+                        <p> {{ catalog.description }} </p>
+                    </div>
+                </div>
+                
+            </div>
+        </ng-container>
+    </div>
+</div>

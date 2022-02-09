@@ -1,0 +1,10 @@
+
+<app-toolbar 
+    *ngIf="currentCatalog && currentCatalog !== null"
+    title="Catalog:" 
+    [link]="{ 'text': currentCatalog.name, 'link': ['/c', currentCatalog.id ]}">
+</app-toolbar>
+
+
+
+<router-outlet></router-outlet>

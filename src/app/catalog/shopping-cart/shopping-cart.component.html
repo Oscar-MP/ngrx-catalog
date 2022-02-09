@@ -1,0 +1,87 @@
+<app-toolbar
+    title='Shopping cart'
+>
+
+</app-toolbar>
+<div class="content-parent full-height cart">
+    <ng-container *ngIf="cartProducts$ | async as cartProducts">
+        <div 
+            *ngIf="!cartProducts || cartProducts.length < 1" 
+            class=" no-data absolute-center"
+        >
+            <div>
+                <h2>There are no products in the cart</h2>
+                <button 
+                    mat-raised-button 
+                    color="primary"
+                    routerLink="/c"
+                >
+                    Start buying now!
+                </button>
+            </div>
+        </div>
+
+        <div 
+            *ngIf="cartProducts && cartProducts.length > 0"
+            class="cart-content flex-row"
+        >
+            <!-- MAIN CONTENT -->
+            <div class="cart-products flex-1 flex-column">
+                <div 
+                    *ngFor="let cartProduct of cartProducts"
+                    class="cart-item"
+                >
+                    <span class="inline">
+                        <b>{{ cartProduct.product.brand | uppercase }}:</b> {{ cartProduct.product.name }}
+                    </span>
+                    <span class="inline">
+                        <b>Price: </b> {{ cartProduct.product.price }}€
+
+                        <b>x {{ cartProduct.amount }}</b>
+                    </span>
+                </div>
+            </div>
+
+            <!-- ASIDE -->
+
+            <div class="cart-resume">
+                <div class="cart-resume-header">
+                    <h2>CART RESUME</h2>
+                </div>
+                <div class="cart-resume-content">
+                    <ul>
+                        <li *ngFor="let cartProduct of cartProducts$ | async">
+                            {{ cartProduct.product.price }} x {{ cartProduct.amount }}
+                        </li>
+                    </ul>
+
+                    <b>Total price:</b> 
+                     {{ totalPrice$ | async }} €
+                </div>
+                <div class="cart-resume-footer">
+                        <span style="width: 60%; margin: 1em auto;">
+                            <button 
+                                mat-raised-button 
+                                color="primary" 
+                                class="full-width" 
+                                style="margin: 1em 0;"
+                                [disabled]="!(isLogged$| async)"
+                                (click)="navigateToPayWall( $event )"
+                            >
+                                PAY NOW
+                            </button>
+                        </span>
+
+                        <div *ngIf="!(isLogged$ | async )" class="login-message">
+                            You must 
+                            <a [routerLink]="['/auth/login']"> log in</a> 
+                            order to pay
+                        </div>
+                </div>
+            </div>
+        </div>
+    </ng-container>
+    
+</div>
+
+

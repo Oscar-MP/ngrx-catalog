@@ -1,0 +1,37 @@
+span.filter-field {
+    display: block;
+    width:100%;
+}
+
+span.clear-brand-button {
+    padding-top: .75em;
+    margin-left: .5em;
+}
+
+.applied-filters-list {
+    margin-bottom: 1em;
+}
+
+.filter-row {
+    align-items: center;
+}
+
+.text-label {
+    font-weight: bolder;
+    color: var(--text-dark)
+}
+
+.price-input {
+    width: 6em;
+}
+
+.price-range-fields {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.price-range-text {
+    font-weight: bolder;
+    margin-bottom: 1em;
+}

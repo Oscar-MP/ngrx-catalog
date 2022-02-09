@@ -1,0 +1,187 @@
+<div class="widget">
+    <div class="widget-container flex-column">
+        <div class="widget-header">
+            <h2>Filter products</h2>
+        </div>          
+        <div class="widget-content flex-1">
+            <span  class="filter-field">
+                <mat-form-field class="full-width" appearance="outline">
+                    <mat-label>Search by text</mat-label>
+                    <input 
+                        matInput 
+                        placeholder="Write your search"
+                        (ngModelChange)="onSearchBoxChange($event)"
+                        [(ngModel)]="textSearchExpression"
+                    >
+                    <mat-icon matSuffix>search</mat-icon>
+                </mat-form-field>
+            </span>
+
+            <span class="flex-row">
+                <mat-form-field 
+                    appearance="outline"
+                    class="flex-1"
+                >
+                    <mat-label>Select Brand</mat-label>
+                    <mat-select 
+                        [(ngModel)]="selectedBrand"
+                        (ngModelChange)="filterByBrand()"
+                    > 
+                        <mat-option 
+                            *ngFor="let brand of brands$ |async" 
+                            [value]="brand"
+                        >
+                            {{ brand | uppercase }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <span 
+                    class="clear-brand-button "
+                >
+                    <button 
+                        mat-mini-fab 
+                        color="primary"
+                        [disabled]="selectedBrand === undefined " 
+                        (click)="onClearBrandButtonClicked()"
+                    >
+                        <mat-icon>clear</mat-icon>
+                    </button>
+                </span>
+            </span>
+
+            <span class="flex-row filter-row">
+                <span class="text-label margin-right-sm padding-top-md">
+                    <p>
+                        Minium rating: 
+                    </p>
+                </span>
+    
+                <span>
+                    <rating 
+                        [rating]="minRating" 
+                        [allowRating]="true"
+                        (onRate)="onMinRatingChange($event)"
+                    ></rating>
+                </span>
+            </span>
+
+            <span class="filter-row">
+                <mat-slider
+                    [(ngModel)]="minRating"
+                    (ngModelChange)="onMinRatingChange()"
+                    color="primary"
+                    thumbLabel
+                    step="1"
+                    min="0"
+                    max="5"
+                    value="1"
+                    aria-label="Rating slider">
+                </mat-slider>
+            </span>
+
+            
+            <span class="filter-row flex-row full-width price-range-fields">
+                <span  class="price-range-text margin-right-sm">
+                    Price range:  
+                </span>
+                <mat-form-field  
+                    class="price-input" 
+                    appearance="outline"
+                >
+                <mat-label>Min. price</mat-label>
+                    <input 
+                        matInput 
+                        type="number"
+                        [max]="maxPrice - 1"
+                        [min]="minPriceInProductFound"
+                        placeholder="Minium price" 
+                        [(ngModel)]="minPrice"
+                        (ngModelChange)="onPriceRangeChanged()"
+                    >
+                </mat-form-field>
+
+                <span 
+                    class="price-range-text margin-right-sm margin-left-sm"
+                >
+                    -
+                </span>
+
+                <mat-form-field  
+                    class="price-input" 
+                    appearance="outline"
+                >
+                    <mat-label>Max. price</mat-label>
+                    <input 
+                        matInput 
+                        type="number"
+                        [max]="maxPriceInProductFound"
+                        [min]="minPrice + 1"
+                        placeholder="Maximum price" 
+                        [(ngModel)]="maxPrice"
+                        (ngModelChange)="onPriceRangeChanged()"
+                    >
+                </mat-form-field>
+                
+                
+            </span>
+            
+            <span class="filter-row flex-row">
+                <span class="text-label">
+                    Min. price: 
+                </span>
+
+                <mat-slider
+                    class="margin-left-md"
+                    [(ngModel)]="minPrice"
+                    (ngModelChange)="onPriceRangeChanged()"
+                    color="primary"
+                    step="1"
+                    [min]="minPriceInProductFound"
+                    [max]="maxPrice - 1"
+                    aria-label="Minium price slider">
+                </mat-slider>
+
+            </span>
+            <span class="filter-row flex-row">
+                <span class="text-label">
+                    Max. price: 
+                </span>
+                <mat-slider
+                    class="margin-left-md"
+                    [(ngModel)]="maxPrice"
+                    (ngModelChange)="onPriceRangeChanged()"
+                    color="primary"
+                    step="1"
+                    [min]="minPrice + 1"
+                    [max]="maxPriceInProductFound"
+                    aria-label="Maximum price slider">
+                </mat-slider>
+            </span>
+        </div>
+        <div class="widget-footer text-center">
+            <div class="applied-filters-list" >
+                <mat-chip-list  aria-label="Applied filters">
+                    <mat-chip 
+                        *ngFor="let filter of appliedFilters$ | async"
+                        color="primary" selected
+                        (removed)="removeFilter(filter)">
+                    
+                        {{ filter.type | uppercase}}
+
+                        <button matChipRemove>
+                            <mat-icon>cancel</mat-icon>
+                        </button>
+                    </mat-chip>
+                </mat-chip-list>
+            </div>
+            <button  
+                mat-raised-button
+                (click)="removeFilters()"
+            >
+                <mat-icon>clear</mat-icon>
+                Reset Filters
+            </button>
+            
+        </div> 
+    </div>
+</div>
