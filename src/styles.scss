@@ -1,1 +1,135 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+:root {
+    --bg-primary: #00bcd4;
+    --bg-light: #62efff;
+    --bg-dark: #008ba3;
+    --text-dark: #323232;
+}
+
+a { text-decoration: none; color: var(--bg-primary) }
+a:hover { color: var(--bg-light)}
+
+/** HELPERS **/
+.text { white-space:pre-wrap; }
+.text-left   { text-align: left !important; }
+.text-right  { text-align: right  !important; }
+.text-center { text-align: center  !important; }
+
+.full-width  { width: 100% !important; }
+.full-height { height: 100% !important; }
+
+.bg-color-dark { background-color: var(--bg-dark) !important;}
+
+.flex-1 { flex: 1; }
+.flex-row { display: flex; flex-direction: row; }
+.flex-column { display: flex; flex-direction: column; }
+.flex-vertical-center { 
+    align-items: center;
+    justify-content: center;
+}
+.margin-right-sm { margin-right: .5em; }
+.margin-right-md { margin-right: 1em; }
+.margin-right-lg { margin-right: 1.5em; }
+.margin-left-sm { margin-left: .5em; }
+.margin-left-md { margin-left: 1em; }
+.margin-left-lg { margin-left: 1.5em; }
+
+.padding-top-md { padding-top: 1em; }
+
+
+.absolute-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.vertical-absolute-center {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.margin-center-sm, 
+.margin-center-ssm,
+.margin-center-md,  
+.margin-center-lg {
+    display: block;
+    margin: 0 auto
+}
+
+.margin-center-xl   { width: 80%; }
+.margin-center-md   { width: 60%; }
+.margin-center-sm   { width: 40%; }
+.margin-center-ssm  { width: 30%; }
+
+.auto-width { width: auto; }
+.inline { width: 100%; display: inline-block;}
+/** LAYOUT HELPER **/ 
+div.content-parent {
+    flex: 1;
+    display: flex;
+}
+
+aside {
+    background: #efefef;
+    width: 25%;
+    border-right: 1px solid #cecece;
+    box-sizing: border-box;
+    padding: 1em;
+}
+
+div.content-container  {
+    flex: 1;
+    box-sizing: border-box;
+    margin: 1em;
+}
+
+
+/** OWN COMPONENTS **/ 
+
+.notificator {
+    margin: 2em 1.5em;
+    padding: 1em;
+    box-sizing: border-box;
+    border-radius: .5em;
+    text-align: center;
+    border: 1px solid rgba(0,0,0,.5)
+}
+
+.notificator.error {
+    background: rgba(255, 0, 0, 0.87);
+    border: 1px solid rgb(180, 31, 31);
+}
+
+
+div.widget {
+    border: 1px solid #cecece;
+    background: #ddd;
+    border-radius: .5em;
+    box-sizing: border-box;
+}
+
+div.widget div.widget-container {
+    padding: 1em;
+}
+
+div.widget div.widget-container div.widget-header {
+    border-bottom: 1px solid #cfcfcf;
+    margin-bottom: 1em;
+}
+
+div.widget div.widget-container div.widget-footer {
+    border-top: 1px solid #cfcfcf;
+    margin-top: 1em;
+    padding-top: 1em;
+}
+
+.loading mat-spinner{
+    margin: 1.5em auto;
+    width: auto;
+}
