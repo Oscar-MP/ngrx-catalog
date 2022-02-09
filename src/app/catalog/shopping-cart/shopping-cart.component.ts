@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { KccChecking } from 'src/app/shared/decorators/kcc-checking.decorator';
 import { ICartItem } from '../shared/interfaces/ICartItem';
 import { IProduct } from '../shared/interfaces/IProduct';
 
@@ -15,7 +14,6 @@ import { Router } from '@angular/router';
   templateUrl: './shopping-cart.component.html',
   styleUrls: ['./shopping-cart.component.scss']
 })
-@KccChecking
 export class ShoppingCartComponent implements OnInit {
 
   cartProducts$!: Observable<ICartItem[]>;
